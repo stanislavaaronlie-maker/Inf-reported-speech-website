@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Speech Learning Hub</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#17335C',
+                            900: '#0F2342',
+                            light: '#24477A'
+                        },
+                        sky: {
+                            hero: '#D8EBFF',
+                            soft: '#EBF4FF'
+                        },
+                        accent: {
+                            yellow: '#FACC15',
+                            hover: '#EAB308'
+                        },
+                        bgPage: '#F4F7FB'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F4F7FB;
+            color: #1E293B;
+        }
+
+        /* Smooth tab transition */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+
+        /* Custom SVG Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-amber-200 selection:text-navy-800">
+
+    <!-- ================= STICKY TOP NAVBAR ================= -->
+    <header class="sticky top-0 z-40 bg-navy-800 text-white shadow-md border-b border-navy-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <button onclick="navigateTo('home')" class="flex items-center gap-3 group text-left focus:outline-none">
+                    <div class="bg-white/10 p-2.5 rounded-xl border border-white/20 group-hover:bg-white/20 transition-all">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-extrabold text-lg sm:text-xl leading-tight tracking-tight text-white">Reported Speech</div>
+                        <div class="text-xs text-slate-300 font-medium tracking-wide">Learning Hub</div>
+                    </div>
+                </button>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-semibold text-sm">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all relative">
+                        Home
+                        <span class="nav-indicator absolute bottom-0 left-3 right-3 h-0.5 bg-white rounded-full transition-all opacity-0"></span>
+                    </button>
+                    <button onclick="navigateTo('materi')" id="nav-materi" class="nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all relative">
+                        Materi
+                        <span class="nav-indicator absolute bottom-0 left-3 right-3 h-0.5 bg-white rounded-full transition-all opacity-0"></span>
+                    </button>
+                    <button onclick="navigateTo('contoh')" id="nav-contoh" class="nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all relative">
+                        Contoh
+                        <span class="nav-indicator absolute bottom-0 left-3 right-3 h-0.5 bg-white rounded-full transition-all opacity-0"></span>
+                    </button>
+                    <button onclick="navigateTo('latihan')" id="nav-latihan" class="nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all relative">
+                        Latihan
+                        <span class="nav-indicator absolute bottom-0 left-3 right-3 h-0.5 bg-white rounded-full transition-all opacity-0"></span>
+                    </button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all relative">
+                        About
+                        <span class="nav-indicator absolute bottom-0 left-3 right-3 h-0.5 bg-white rounded-full transition-all opacity-0"></span>
+                    </button>
+                </nav>
+
+                <!-- Search Button & Mobile Menu Toggle -->
+                <div class="flex items-center gap-2">
+                    <button onclick="openSearchModal()" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all focus:outline-none" title="Cari Materi atau Contoh">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-white/10 space-y-1 font-medium">
+                <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-white hover:bg-white/10 transition">Home</button>
+                <button onclick="navigateTo('materi'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-white hover:bg-white/10 transition">Materi</button>
+                <button onclick="navigateTo('contoh'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-white hover:bg-white/10 transition">Contoh</button>
+                <button onclick="navigateTo('latihan'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-white hover:bg-white/10 transition">Latihan</button>
+                <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-white hover:bg-white/10 transition">About</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT VIEWS ================= -->
+    <main class="flex-grow">
+
+        <!-- ---------------- VIEW 1: HOME (BERANDA) ---------------- -->
+        <section id="page-home" class="page-section active">
+            <!-- Hero Banner -->
+            <div class="bg-sky-hero pt-8 pb-12 md:py-16 px-4 sm:px-6 lg:px-8 border-b border-sky-200">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="md:col-span-7 space-y-5 text-center md:text-left">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 leading-tight">
+                            Learn <br class="hidden sm:inline"/>Reported Speech!
+                        </h1>
+                        <p class="text-base sm:text-lg text-slate-700 max-w-xl font-medium">
+                            Pelajari kalimat tidak langsung Bahasa Inggris dengan mudah.
+                        </p>
+                        <div class="pt-2">
+                            <button onclick="navigateTo('materi')" class="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-yellow hover:bg-accent-hover text-navy-800 font-extrabold text-base rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                                Mulai Belajar 
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero SVG Illustration -->
+                    <div class="md:col-span-5 flex justify-center relative">
+                        <div class="w-full max-w-sm sm:max-w-md relative">
+                            <!-- Student Character SVG -->
+                            <svg class="w-full h-auto drop-shadow-md animate-float" viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Background Circle Accent -->
+                                <circle cx="200" cy="180" r="140" fill="#C5E1FF" opacity="0.6"/>
+                                <!-- Sparkles -->
+                                <path d="M70 60L75 75L90 80L75 85L70 100L65 85L50 80L65 75L70 60Z" fill="#3B82F6" opacity="0.7"/>
+                                <path d="M340 90L343 98L351 101L343 104L340 112L337 104L329 101L337 98L340 90Z" fill="#FACC15"/>
+                                <path d="M330 220L334 228L342 231L334 234L330 242L326 234L318 231L326 228L330 220Z" fill="#3B82F6"/>
+                                
+                                <!-- Speech Bubble -->
+                                <g transform="translate(185, 30)">
+                                    <path d="M10 20 C10 8, 20 0, 80 0 C140 0, 150 8, 150 20 C150 32, 140 40, 80 40 C60 40, 45 44, 30 52 C35 44, 32 40, 20 40 C10 40, 10 32, 10 20 Z" fill="white" stroke="#17335C" stroke-width="3"/>
+                                    <text x="80" y="24" text-anchor="middle" fill="#17335C" font-family="Plus Jakarta Sans" font-weight="700" font-size="14">"He said that..."</text>
+                                </g>
+
+                                <!-- Student Hoodie Body -->
+                                <path d="M120 320 C120 230 150 210 200 210 C250 210 280 230 280 320 Z" fill="#17335C"/>
+                                <path d="M150 230 L200 270 L250 230" stroke="#24477A" stroke-width="5" stroke-linecap="round"/>
+                                
+                                <!-- Head & Neck -->
+                                <rect x="185" y="180" width="30" height="35" rx="8" fill="#FDBA74"/>
+                                <path d="M155 130 C155 95 245 95 245 130 C245 170 230 185 200 185 C170 185 155 170 155 130 Z" fill="#FED7AA"/>
+                                
+                                <!-- Hair -->
+                                <path d="M150 120 C150 85 180 75 200 75 C230 75 250 85 250 115 C240 100 225 105 210 105 C190 105 175 95 160 110 C155 115 152 120 150 120 Z" fill="#1E293B"/>
+                                
+                                <!-- Eyes & Smile -->
+                                <circle cx="180" cy="140" r="3.5" fill="#1E293B"/>
+                                <circle cx="220" cy="140" r="3.5" fill="#1E293B"/>
+                                <path d="M192 158 Q200 166 208 158" stroke="#1E293B" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                
+                                <!-- Book in Hand -->
+                                <g transform="translate(145, 230)">
+                                    <path d="M10 25 Q55 10 55 55 Q20 50 10 25 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+                                    <path d="M100 25 Q55 10 55 55 Q90 50 100 25 Z" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+                                    <path d="M55 15 L55 55" stroke="#94A3B8" stroke-width="3"/>
+                                    <path d="M15 28 L45 22 M15 36 L45 30 M65 22 L95 28 M65 30 L95 36" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Hands -->
+                                    <circle cx="12" cy="45" r="8" fill="#FDBA74"/>
+                                    <circle cx="98" cy="45" r="8" fill="#FDBA74"/>
+                                </g>
+
+                                <!-- Pen Held Near Chin -->
+                                <g transform="translate(225, 155) rotate(-35)">
+                                    <rect x="0" y="0" width="8" height="40" rx="2" fill="#1E293B"/>
+                                    <polygon points="0,40 8,40 4,48" fill="#94A3B8"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Pilih Materi" Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 mb-8 tracking-tight">Pilih Materi</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div onclick="openMateriTopic(1)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-book-open text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">Pengertian</h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div onclick="openMateriTopic(2)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-clock text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">Backshift</h3>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div onclick="openMateriTopic(4)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-comment-dots text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">Statements</h3>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div onclick="openMateriTopic(5)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-purple-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-paper-plane text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">Commands & Requests</h3>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div onclick="openMateriTopic(6)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-circle-question text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">Questions</h3>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div onclick="openMateriTopic(7)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-300 transition-all cursor-pointer group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-star text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-navy-800">No Backshift</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------------- VIEW 2: MATERI ---------------- -->
+        <section id="page-materi" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <!-- Header Banner -->
+                <div class="bg-sky-hero rounded-3xl p-6 sm:p-10 mb-10 border border-sky-200 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="max-w-2xl space-y-3">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-navy-800 tracking-tight">Materi Reported Speech</h1>
+                        <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                            Pahami konsep, aturan, dan perubahan dalam Reported Speech melalui penjelasan yang mudah dan terstruktur.
+                        </p>
+                    </div>
+
+                    <!-- Books SVG Illustration -->
+                    <div class="w-48 sm:w-60 flex-shrink-0">
+                        <svg class="w-full h-auto" viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Books Stack -->
+                            <rect x="20" y="110" width="110" height="24" rx="4" fill="#3B82F6"/>
+                            <rect x="25" y="114" width="100" height="16" rx="2" fill="#2563EB"/>
+                            <rect x="25" y="86" width="100" height="22" rx="4" fill="#10B981"/>
+                            <rect x="30" y="90" width="90" height="14" rx="2" fill="#059669"/>
+                            <rect x="35" y="66" width="85" height="18" rx="3" fill="#F59E0B"/>
+                            
+                            <!-- Pencil Cup -->
+                            <rect x="145" y="80" width="40" height="54" rx="6" fill="#2563EB"/>
+                            <!-- Pencils -->
+                            <path d="M152 40 L160 40 L160 80 L152 80 Z" fill="#EF4444"/>
+                            <polygon points="152,40 160,40 156,30" fill="#FDBA74"/>
+                            <path d="M165 48 L173 48 L173 80 L165 80 Z" fill="#FACC15"/>
+                            <polygon points="165,48 173,48 169,38" fill="#FDBA74"/>
+                            <path d="M176 55 L182 55 L182 80 L176 80 Z" fill="#10B981"/>
+                            
+                            <!-- Lettering Badge -->
+                            <g transform="translate(125, 5)">
+                                <path d="M10 10 Q45 0 80 10 Q75 35 45 40 Q15 35 10 10 Z" fill="#FFFFFF" stroke="#17335C" stroke-width="1.5"/>
+                                <text x="45" y="18" text-anchor="middle" fill="#17335C" font-size="9" font-weight="800">Small Steps</text>
+                                <text x="45" y="30" text-anchor="middle" fill="#2563EB" font-size="9" font-weight="800">Big Progress</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 7 Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div onclick="openMateriTopic(1)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-navy-800 text-white font-extrabold flex items-center justify-center text-lg">1</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-blue-600 transition-colors">Pengertian</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Apa itu Reported Speech? Dan kapan digunakan?</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div onclick="openMateriTopic(2)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-amber-400 text-navy-800 font-extrabold flex items-center justify-center text-lg">2</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-amber-600 transition-colors">Backshift</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Perubahan tense dalam indirect speech.</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div onclick="openMateriTopic(3)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-teal-500 text-white font-extrabold flex items-center justify-center text-lg">3</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-teal-600 transition-colors">Pronoun & Adverbs</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Penyesuaian kata ganti dan keterangan waktu/tempat.</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div onclick="openMateriTopic(4)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-emerald-500 text-white font-extrabold flex items-center justify-center text-lg">4</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-emerald-600 transition-colors">Statements</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Cara mengubah kalimat pernyataan.</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div onclick="openMateriTopic(5)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-purple-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-600 text-white font-extrabold flex items-center justify-center text-lg">5</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-purple-600 transition-colors">Commands & Requests</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Cara mengubah perintah dan larangan.</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div onclick="openMateriTopic(6)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-rose-400 transition-all cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-full bg-rose-500 text-white font-extrabold flex items-center justify-center text-lg">6</div>
+                            </div>
+                            <h3 class="font-extrabold text-xl text-navy-800 mb-2 group-hover:text-rose-600 transition-colors">Questions</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed font-medium">Cara mengubah kalimat tanya.</p>
+                        </div>
+                        <div class="mt-6 flex justify-end text-slate-400 group-hover:text-navy-800 transition-colors">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 (Full-width Span) -->
+                    <div onclick="openMateriTopic(7)" class="md:col-span-2 lg:col-span-3 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-400 transition-all cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
+                        <div class="flex items-start sm:items-center gap-4">
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full bg-amber-400 text-navy-800 flex items-center justify-center">
+                                    <i class="fa-solid fa-star text-lg"></i>
+                                </div>
+                                <div class="w-10 h-10 rounded-full bg-navy-800 text-white font-extrabold flex items-center justify-center text-lg">7</div>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-xl text-navy-800 group-hover:text-blue-600 transition-colors">No Backshift (Pengecualian)</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed font-medium mt-1">Kapan bentuk tense tidak mengalami perubahan?</p>
+                            </div>
+                        </div>
+                        <div class="text-slate-400 group-hover:text-navy-800 transition-colors self-end sm:self-center">
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------------- VIEW 3: CONTOH KALIMAT ---------------- -->
+        <section id="page-contoh" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <!-- Header Banner -->
+                <div class="bg-sky-hero rounded-3xl p-6 sm:p-10 mb-10 border border-sky-200 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="max-w-2xl space-y-3">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-navy-800 tracking-tight">Contoh Kalimat</h1>
+                        <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                            Lihat berbagai contoh perubahan kalimat langsung (Direct Speech) menjadi tidak langsung (Indirect Speech) sesuai dengan jenisnya.
+                        </p>
+                    </div>
+
+                    <!-- Speech Bubbles SVG Illustration -->
+                    <div class="w-56 sm:w-72 flex-shrink-0">
+                        <svg class="w-full h-auto" viewBox="0 0 280 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left Bubble Direct -->
+                            <rect x="10" y="20" width="100" height="50" rx="16" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+                            <path d="M40 70 L30 85 L55 70 Z" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+                            <text x="60" y="50" text-anchor="middle" fill="#17335C" font-weight="700" font-size="13">"I'm busy."</text>
+
+                            <!-- Arrow -->
+                            <path d="M120 45 L145 45 M140 38 L147 45 L140 52" stroke="#17335C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <!-- Right Bubble Indirect -->
+                            <rect x="155" y="10" width="115" height="70" rx="18" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+                            <path d="M185 80 L175 98 L200 80 Z" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+                            <text x="212" y="38" text-anchor="middle" fill="#17335C" font-weight="700" font-size="12">He said</text>
+                            <text x="212" y="56" text-anchor="middle" fill="#17335C" font-weight="700" font-size="12">that he was busy.</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 2-Column Main Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Filter Sidebar -->
+                    <div class="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                        <h3 class="font-extrabold text-xs uppercase tracking-wider text-slate-400 mb-3 px-3">Kategori Contoh</h3>
+                        <button onclick="filterExamples('all')" id="filter-all" class="filter-btn w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center justify-between transition-all bg-navy-800 text-white shadow-sm">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-list-ul"></i> Semua Contoh
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        <button onclick="filterExamples('statements')" id="filter-statements" class="filter-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-comment-dots text-emerald-600"></i> Statements
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                        </button>
+                        <button onclick="filterExamples('commands')" id="filter-commands" class="filter-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-paper-plane text-purple-600"></i> Commands & Requests
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                        </button>
+                        <button onclick="filterExamples('questions')" id="filter-questions" class="filter-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-question text-rose-600"></i> Questions
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                        </button>
+                        <button onclick="filterExamples('nobackshift')" id="filter-nobackshift" class="filter-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-star text-amber-500"></i> No Backshift
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                        </button>
+                    </div>
+
+                    <!-- Right Comparison Content -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                            <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                                <h2 id="example-category-title" class="font-extrabold text-xl text-navy-800">Contoh Statements (Pernyataan)</h2>
+                                <span class="text-xs font-semibold px-3 py-1 bg-sky-100 text-navy-800 rounded-full">Reported Speech</span>
+                            </div>
+
+                            <!-- Table -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-50/80 text-navy-800 text-sm font-bold border-b border-slate-200">
+                                            <th class="p-4 pl-6 w-1/2">Direct Speech</th>
+                                            <th class="p-4 pr-6 w-1/2">Indirect Speech</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="example-table-body" class="divide-y divide-slate-100 text-sm text-slate-800 font-medium">
+                                        <!-- Dynamically populated via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Yellow Tip Callout -->
+                        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-4 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-amber-400 text-navy-800 flex items-center justify-center flex-shrink-0 text-xl font-bold">
+                                <i class="fa-regular fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-base mb-1">Ingat!</h4>
+                                <p class="text-slate-700 text-sm leading-relaxed font-medium">
+                                    Bentuk waktu biasanya dimundurkan satu tahap (backshift) serta kata ganti dan keterangan waktu/tempat juga disesuaikan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------------- VIEW 4: LATIHAN SOAL ---------------- -->
+        <section id="page-latihan" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <!-- Header Banner -->
+                <div class="bg-sky-hero rounded-3xl p-6 sm:p-10 mb-10 border border-sky-200 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="max-w-2xl space-y-3">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-navy-800 tracking-tight">Latihan Soal</h1>
+                        <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                            Uji pemahamanmu dengan mengerjakan soal berikut. Pilih jawaban yang paling tepat!
+                        </p>
+                    </div>
+
+                    <!-- Checklist SVG Illustration -->
+                    <div class="w-48 sm:w-56 flex-shrink-0">
+                        <svg class="w-full h-auto" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Paper Pad -->
+                            <rect x="30" y="20" width="110" height="120" rx="12" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+                            <line x1="50" y1="45" x2="115" y2="45" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="50" y1="65" x2="115" y2="65" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="50" y1="85" x2="115" y2="85" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Checkmarks -->
+                            <path d="M42 45 L46 49 L54 40" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M42 65 L46 69 L54 60" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M42 85 L46 89 L54 80" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Pencil -->
+                            <g transform="translate(110, 30) rotate(25)">
+                                <rect x="0" y="0" width="14" height="90" rx="3" fill="#2563EB"/>
+                                <polygon points="0,90 14,90 7,105" fill="#FDBA74"/>
+                            </g>
+                            <!-- Badge -->
+                            <g transform="translate(130, 20)">
+                                <text x="25" y="15" text-anchor="middle" fill="#17335C" font-size="11" font-weight="800">You</text>
+                                <text x="25" y="30" text-anchor="middle" fill="#17335C" font-size="11" font-weight="800">Can</text>
+                                <text x="25" y="45" text-anchor="middle" fill="#2563EB" font-size="11" font-weight="800">Do It!</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 2-Column Quiz Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Main Quiz Card -->
+                    <div class="lg:col-span-8 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm relative min-h-[420px] flex flex-col justify-between">
+                        
+                        <!-- MODE 1: PILIHAN GANDA -->
+                        <div id="quiz-mode-mcq" class="quiz-container space-y-6">
+                            <div>
+                                <h3 class="font-extrabold text-base text-slate-800 mb-2" id="mcq-question-number">1. Pilih jawaban yang paling tepat!</h3>
+                                <p class="text-xl font-bold text-navy-800 bg-slate-50 p-4 rounded-xl border border-slate-200/80 inline-block w-full" id="mcq-question-text">
+                                    "I will call you later," he said.
+                                </p>
+                            </div>
+
+                            <!-- Radio Options -->
+                            <div class="space-y-3" id="mcq-options-container">
+                                <!-- Dynamically generated via JS -->
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
+                                <button onclick="prevMCQ()" id="btn-mcq-prev" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-arrow-left text-xs"></i> Sebelumnya
+                                </button>
+                                <button onclick="nextMCQ()" id="btn-mcq-next" class="px-7 py-2.5 rounded-full bg-accent-yellow hover:bg-accent-hover text-navy-800 font-extrabold text-sm shadow transition-all flex items-center gap-2">
+                                    Selanjutnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- MODE 2: UBAH KALIMAT -->
+                        <div id="quiz-mode-transform" class="quiz-container hidden space-y-6">
+                            <div>
+                                <h3 class="font-extrabold text-base text-slate-800 mb-2" id="trans-number">Ubah Kalimat Langsung Berikut:</h3>
+                                <div class="bg-sky-soft p-4 rounded-xl border border-sky-200 mb-4">
+                                    <span class="text-xs uppercase font-extrabold text-sky-800 tracking-wider">Direct Speech</span>
+                                    <p class="text-lg font-bold text-navy-800 mt-1" id="trans-direct-text"></p>
+                                </div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Jawaban Anda (Indirect Speech):</label>
+                                <input type="text" id="trans-user-input" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-navy-800 text-base font-medium" placeholder="Tuliskan kalimat tidak langsung di sini...">
+                            </div>
+
+                            <!-- Feedback Message Box -->
+                            <div id="trans-feedback" class="hidden p-4 rounded-xl border font-medium text-sm"></div>
+
+                            <!-- Buttons -->
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <button onclick="prevTrans()" id="btn-trans-prev" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-arrow-left text-xs"></i> Sebelumnya
+                                </button>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="checkTransformation()" class="px-5 py-2.5 rounded-full bg-navy-800 hover:bg-navy-900 text-white font-bold text-sm shadow transition-all">
+                                        Periksa Jawaban
+                                    </button>
+                                    <button onclick="nextTrans()" id="btn-trans-next" class="px-5 py-2.5 rounded-full bg-accent-yellow hover:bg-accent-hover text-navy-800 font-extrabold text-sm shadow transition-all flex items-center gap-2">
+                                        Lanjut <i class="fa-solid fa-arrow-right text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MODE 3: PEMBAHASAN -->
+                        <div id="quiz-mode-review" class="quiz-container hidden space-y-6">
+                            <h3 class="font-extrabold text-xl text-navy-800 border-b pb-3">Pembahasan Latihan Pilihan Ganda</h3>
+                            <div id="review-list-container" class="space-y-6 max-h-[500px] overflow-y-auto pr-2">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <!-- Progress Card -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                            <h4 class="font-extrabold text-slate-900 text-base">Progress</h4>
+                            <!-- Progress Bar -->
+                            <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                <div id="quiz-progress-bar" class="bg-navy-800 h-3 rounded-full transition-all duration-300" style="width: 10%;"></div>
+                            </div>
+                            <div class="flex justify-end text-xs font-bold text-slate-500" id="quiz-progress-counter">
+                                1/10
+                            </div>
+                        </div>
+
+                        <!-- Jenis Latihan Selector Card -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-400 mb-3 px-3">Jenis Latihan</h4>
+                            
+                            <button onclick="switchQuizMode('mcq')" id="mode-btn-mcq" class="mode-btn w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center justify-between transition-all bg-navy-800 text-white shadow-sm">
+                                <span class="flex items-center gap-3">
+                                    <i class="fa-solid fa-sun text-amber-400"></i> Pilihan Ganda
+                                </span>
+                                <i class="fa-solid fa-circle-check text-xs"></i>
+                            </button>
+
+                            <button onclick="switchQuizMode('transform')" id="mode-btn-transform" class="mode-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                                <span class="flex items-center gap-3">
+                                    <i class="fa-solid fa-pen-to-square text-blue-600"></i> Ubah Kalimat
+                                </span>
+                                <i class="fa-solid fa-circle-check text-xs opacity-0"></i>
+                            </button>
+
+                            <button onclick="switchQuizMode('review')" id="mode-btn-review" class="mode-btn w-full text-left px-4 py-3 rounded-xl font-medium text-sm text-slate-700 hover:bg-slate-100 flex items-center justify-between transition-all">
+                                <span class="flex items-center gap-3">
+                                    <i class="fa-solid fa-book-open text-emerald-600"></i> Pembahasan
+                                </span>
+                                <i class="fa-solid fa-circle-check text-xs opacity-0"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------------- VIEW 5: ABOUT (TENTANG WEBSITE) ---------------- -->
+        <section id="page-about" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <!-- Top Section Banner -->
+                <div class="bg-sky-hero rounded-3xl p-6 sm:p-10 mb-10 border border-sky-200 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="max-w-xl space-y-4">
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-navy-800 tracking-tight">Tentang Website</h1>
+                        <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                            Reported Speech Learning Hub adalah website pembelajaran Bahasa Inggris yang dibuat untuk membantu siswa SMA kelas XI memahami materi Reported Speech dengan cara yang mudah, menarik, dan interaktif.
+                        </p>
+                    </div>
+
+                    <!-- Laptop & Books SVG Illustration -->
+                    <div class="w-64 sm:w-80 flex-shrink-0">
+                        <svg class="w-full h-auto" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Laptop Base -->
+                            <rect x="70" y="145" width="180" height="12" rx="4" fill="#94A3B8"/>
+                            <rect x="130" y="145" width="60" height="4" rx="2" fill="#64748B"/>
+                            
+                            <!-- Laptop Screen Frame -->
+                            <rect x="90" y="30" width="140" height="115" rx="8" fill="#1E293B"/>
+                            <!-- Inner Display Screen -->
+                            <rect x="98" y="38" width="124" height="99" rx="4" fill="#17335C"/>
+                            
+                            <!-- Screen Text -->
+                            <text x="160" y="78" text-anchor="middle" fill="#FFFFFF" font-family="Plus Jakarta Sans" font-weight="800" font-size="12">Better English</text>
+                            <text x="160" y="96" text-anchor="middle" fill="#FACC15" font-family="Plus Jakarta Sans" font-weight="800" font-size="12">Brighter Future</text>
+
+                            <!-- Books Side Stack -->
+                            <g transform="translate(240, 90)">
+                                <rect x="0" y="30" width="55" height="12" rx="2" fill="#EF4444"/>
+                                <rect x="3" y="18" width="50" height="12" rx="2" fill="#F59E0B"/>
+                                <rect x="5" y="6" width="45" height="12" rx="2" fill="#10B981"/>
+                            </g>
+
+                            <!-- Small Plant Pot -->
+                            <g transform="translate(260, 50)">
+                                <polygon points="10,35 25,35 28,18 7,18" fill="#D97706"/>
+                                <path d="M12 18 C8 8 20 2 17 18 Z" fill="#10B981"/>
+                                <path d="M23 18 C27 8 15 2 18 18 Z" fill="#059669"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 3-Column Info Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1: Tujuan -->
+                    <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm flex flex-col items-start space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-500 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-extrabold text-xl text-navy-800">Tujuan</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed font-medium">
+                            Membantu siswa memahami materi Reported Speech melalui penjelasan yang sederhana, contoh yang relevan, dan latihan soal.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Target Pengguna -->
+                    <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm flex flex-col items-start space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="font-extrabold text-xl text-navy-800">Target Pengguna</h3>
+                        <ul class="text-sm text-slate-600 space-y-2 font-medium list-disc list-inside">
+                            <li>Siswa SMA kelas XI</li>
+                            <li>Siswa yang ingin belajar mandiri</li>
+                            <li>Guru Bahasa Inggris</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Kontak / Identitas -->
+                    <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm flex flex-col items-start space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <h3 class="font-extrabold text-xl text-navy-800">Kontak / Identitas</h3>
+                        <div class="text-sm text-slate-600 space-y-1.5 font-medium">
+                            <p><span class="font-bold text-slate-800">Dibuat oleh:</span> Kelompok 5</p>
+                            <p><span class="font-bold text-slate-800">Kelas:</span> XI-1A2</p>
+                            <p><span class="font-bold text-slate-800">Tahun:</span> 2025</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-navy-800 text-white border-t border-navy-900 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Left Branding -->
+            <div class="text-center sm:text-left">
+                <h4 class="font-extrabold text-lg tracking-tight">Reported Speech Learning Hub</h4>
+                <p class="text-xs text-slate-300 mt-0.5 font-medium">Better English, Brighter Future</p>
+            </div>
+
+            <!-- Right Social Media Icons -->
+            <div class="flex items-center gap-4 text-slate-300">
+                <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" title="Instagram">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" title="YouTube">
+                    <i class="fa-brands fa-youtube text-lg"></i>
+                </a>
+                <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" title="Website">
+                    <i class="fa-solid fa-globe text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= MODAL: DETAIL MATERI READER ================= -->
+    <div id="materi-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <!-- Modal Header -->
+            <div class="px-6 py-5 bg-navy-800 text-white flex items-center justify-between border-b border-navy-900">
+                <div class="flex items-center gap-3">
+                    <span id="modal-topic-number" class="w-8 h-8 rounded-full bg-amber-400 text-navy-800 font-extrabold flex items-center justify-center text-sm">1</span>
+                    <h3 id="modal-topic-title" class="font-extrabold text-xl tracking-tight text-white">Judul Materi</h3>
+                </div>
+                <button onclick="closeMateriModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div id="modal-topic-content" class="p-6 sm:p-8 overflow-y-auto space-y-6 text-slate-700 leading-relaxed font-medium">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                <button onclick="navigateMateriModal(-1)" id="modal-btn-prev" class="px-4 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-chevron-left text-xs"></i> Materi Sebelumnya
+                </button>
+                <button onclick="navigateMateriModal(1)" id="modal-btn-next" class="px-4 py-2 rounded-xl bg-navy-800 hover:bg-navy-900 text-white font-bold text-sm transition flex items-center gap-2">
+                    Materi Selanjutnya <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL: LIVE SEARCH ================= -->
+    <div id="search-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-start justify-center pt-16 sm:pt-24 p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-100 flex flex-col max-h-[80vh]">
+            <!-- Search Header Input -->
+            <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center gap-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg ml-2"></i>
+                <input type="text" id="search-input" onkeyup="handleLiveSearch()" placeholder="Cari materi (cth: backshift, question, pronoun)..." class="w-full bg-transparent border-none outline-none text-slate-800 font-semibold text-base placeholder-slate-400">
+                <button onclick="closeSearchModal()" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-xs font-bold text-slate-600">ESC</button>
+            </div>
+
+            <!-- Search Results -->
+            <div id="search-results" class="p-4 overflow-y-auto divide-y divide-slate-100 space-y-2">
+                <p class="text-sm text-slate-400 text-center py-6">Ketik kata kunci untuk mulai mencari...</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT APP LOGIC ================= -->
+    <script>
+        // ---------------- DATA STRUCTURES ----------------
+        
+        // 1. MATERI CONTENT DATA
+        const materiData = {
+            1: {
+                title: "Pengertian Reported Speech",
+                subtitle: "Apa itu Reported Speech dan kapan digunakan?",
+                html: `
+                    <p><strong>Reported Speech</strong> (atau <em>Indirect Speech</em> / Kalimat Tidak Langsung) adalah kalimat yang digunakan untuk melaporkan kembali apa yang telah dikatakan oleh orang lain tanpa mengutip perkataan mereka secara persis kata demi kata.</p>
+                    <div class="bg-sky-50 border-l-4 border-navy-800 p-4 rounded-r-xl my-4">
+                        <p class="font-bold text-navy-800">Perbedaan Utama:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li><strong>Direct Speech:</strong> "I am happy," she said. (Memakai tanda petik dua)</li>
+                            <li><strong>Indirect Speech:</strong> She said that she was happy. (Tanpa tanda petik, terjadi penyesuaian tense)</li>
+                        </ul>
+                    </div>
+                    <h4 class="font-bold text-navy-800 text-lg">Kapan Kita Menggunakannya?</h4>
+                    <p>Kita menggunakan reported speech dalam percakapan sehari-hari, penulisan berita, cerita, atau laporan ketika ingin menyampaikan pesan dari orang lain.</p>
+                `
+            },
+            2: {
+                title: "Aturan Backshift (Perubahan Tense)",
+                subtitle: "Perubahan tenses dari Direct ke Indirect Speech",
+                html: `
+                    <p>Jika <em>reporting verb</em> (kata kerja pelapor) berbentuk lampau (misal: <em>said, told</em>), maka tenses dalam kalimat utama harus dimundurkan satu tahap (<strong>Backshift</strong>).</p>
+                    <div class="overflow-x-auto my-4">
+                        <table class="w-full text-left text-sm border-collapse rounded-xl overflow-hidden">
+                            <thead>
+                                <tr class="bg-navy-800 text-white font-bold">
+                                    <th class="p-3">Direct Speech (Bentuk Asli)</th>
+                                    <th class="p-3">Indirect Speech (Backshift)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-slate-50">
+                                <tr><td class="p-3 font-semibold">Simple Present (V1 / is,am,are)</td><td class="p-3">Simple Past (V2 / was,were)</td></tr>
+                                <tr><td class="p-3 font-semibold">Present Continuous (is/am/are + V-ing)</td><td class="p-3">Past Continuous (was/were + V-ing)</td></tr>
+                                <tr><td class="p-3 font-semibold">Present Perfect (have/has + V3)</td><td class="p-3">Past Perfect (had + V3)</td></tr>
+                                <tr><td class="p-3 font-semibold">Simple Past (V2)</td><td class="p-3">Past Perfect (had + V3)</td></tr>
+                                <tr><td class="p-3 font-semibold">Will / Can / May</td><td class="p-3">Would / Could / Might</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `
+            },
+            3: {
+                title: "Perubahan Pronoun & Adverbs",
+                subtitle: "Penyesuaian kata ganti dan keterangan waktu/tempat",
+                html: `
+                    <p>Selain perubahan tenses, <strong>kata ganti (pronoun)</strong> serta <strong>keterangan waktu & tempat (adverbs of time & place)</strong> juga berubah menyesuaikan sudut pandang pelapor.</p>
+                    <h4 class="font-bold text-navy-800 text-lg mt-4 mb-2">1. Perubahan Adverbs (Keterangan)</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>now</strong> &rarr; then / at that time</div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>today</strong> &rarr; that day</div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>tomorrow</strong> &rarr; the next day / following day</div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>yesterday</strong> &rarr; the day before / previous day</div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>here</strong> &rarr; there</div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>this / these</strong> &rarr; that / those</div>
+                    </div>
+                `
+            },
+            4: {
+                title: "Statements (Kalimat Pernyataan)",
+                subtitle: "Cara mengubah kalimat berita / deklaratif",
+                html: `
+                    <p>Untuk mengubah kalimat pernyataan (Statement):</p>
+                    <ol class="list-decimal list-inside space-y-2 my-3">
+                        <li>Gunakan kata hubung <strong>that</strong> (dapat dihilangkan dalam situasi informal).</li>
+                        <li>Gunakan kata kerja pelapor seperti <em>said (that)</em> atau <em>told + object (that)</em>.</li>
+                        <li>Terapkan aturan <em>Backshift</em> dan penyesuaian <em>Pronoun/Adverb</em>.</li>
+                    </ol>
+                    <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl my-4 text-sm">
+                        <p class="font-bold text-emerald-900">Contoh:</p>
+                        <p>Direct: She said, "I am tired."</p>
+                        <p>Indirect: She said that she was tired.</p>
+                    </div>
+                `
+            },
+            5: {
+                title: "Commands & Requests (Perintah & Permintaan)",
+                subtitle: "Cara mengubah kalimat perintah dan larangan",
+                html: `
+                    <p>Kalimat perintah (Command) atau permintaan (Request) tidak mengalami backshift tenses, melainkan diubah menjadi <strong>To-Infinitive (to + V1)</strong>.</p>
+                    <ul class="list-disc list-inside space-y-2 my-3">
+                        <li><strong>Positive Command:</strong> <em>tell / ask + someone + to + V1</em></li>
+                        <li><strong>Negative Command (Don't):</strong> <em>tell / ask + someone + not to + V1</em></li>
+                    </ul>
+                    <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-xl my-4 text-sm">
+                        <p class="font-bold text-purple-900">Contoh:</p>
+                        <p>Direct: "Close the door," he said.</p>
+                        <p>Indirect: He told me <strong>to close</strong> the door.</p>
+                        <p class="mt-2">Direct: "Don't touch it!" she said.</p>
+                        <p>Indirect: She asked me <strong>not to touch</strong> it.</p>
+                    </div>
+                `
+            },
+            6: {
+                title: "Questions (Kalimat Tanya)",
+                subtitle: "Cara mengubah Yes/No Question dan Wh-Question",
+                html: `
+                    <p>Dalam mengubah kalimat tanya menjadi reported speech, struktur kalimat berubah menjadi <strong>kalimat positif (Subject + Verb)</strong> tanpa tanda tanya.</p>
+                    <h4 class="font-bold text-navy-800 mt-4 mb-2">1. Yes/No Questions</h4>
+                    <p class="text-sm">Gunakan kata hubung <strong>if</strong> atau <strong>whether</strong>.</p>
+                    <p class="text-xs bg-slate-100 p-2 rounded-lg mt-1 font-mono">He asked, "Are you ready?" &rarr; He asked if I was ready.</p>
+
+                    <h4 class="font-bold text-navy-800 mt-4 mb-2">2. Wh- Questions (What, Where, Who, Why, How)</h4>
+                    <p class="text-sm">Gunakan kata tanya itu sendiri sebagai kata hubung.</p>
+                    <p class="text-xs bg-slate-100 p-2 rounded-lg mt-1 font-mono">She asked, "Where do you live?" &rarr; She asked where I lived.</p>
+                `
+            },
+            7: {
+                title: "No Backshift (Pengecualian)",
+                subtitle: "Kapan bentuk tense tidak mengalami perubahan?",
+                html: `
+                    <p>Bentuk tenses <strong>TIDAK mengalami backshift</strong> (tetap seperti aslinya) pada kondisi berikut:</p>
+                    <div class="space-y-3 my-4 text-sm">
+                        <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200">
+                            <strong>1. Kebenaran Umum (General Truth / Facts):</strong><br>
+                            Direct: The teacher said, "The sun rises in the east."<br>
+                            Indirect: The teacher said that the sun rises in the east.
+                        </div>
+                        <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200">
+                            <strong>2. Reporting Verb Berbentuk Present (says, tells):</strong><br>
+                            Direct: He says, "I am hungry."<br>
+                            Indirect: He says that he is hungry.
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // 2. EXAMPLES TABLE DATA
+        const examplesData = {
+            statements: [
+                { direct: 'She said, "I am tired."', indirect: 'She said that she was tired.' },
+                { direct: 'They said, "We will come tomorrow."', indirect: 'They said that they would come the next day.' },
+                { direct: 'He said, "I have finished my homework."', indirect: 'He said that he had finished his homework.' },
+                { direct: 'John said, "I live in Jakarta."', indirect: 'John said that he lived in Jakarta.' }
+            ],
+            commands: [
+                { direct: 'The teacher said, "Open your books."', indirect: 'The teacher told us to open our books.' },
+                { direct: 'She said to me, "Don\'t arrive late."', indirect: 'She asked me not to arrive late.' },
+                { direct: 'Doctor said, "Drink more water."', indirect: 'The doctor advised me to drink more water.' }
+            ],
+            questions: [
+                { direct: 'Rina asked, "Are you hungry?"', indirect: 'Rina asked if I was hungry.' },
+                { direct: 'He asked, "Where do you live?"', indirect: 'He asked where I lived.' },
+                { direct: 'Mother asked, "Did you see my keys?"', indirect: 'Mother asked whether I had seen her keys.' }
+            ],
+            nobackshift: [
+                { direct: 'The lecturer said, "Water boils at 100°C."', indirect: 'The lecturer said that water boils at 100°C.' },
+                { direct: 'Budi says, "I love playing guitar."', indirect: 'Budi says that he loves playing guitar.' }
+            ]
+        };
+
+        // 3. MULTIPLE CHOICE QUESTIONS DATA (MCQ)
+        const mcqQuestions = [
+            {
+                q: '"I will call you later," he said.',
+                options: [
+                    'He said that he will call me later.',
+                    'He said that he would call me later.',
+                    'He said if he would call me later.',
+                    'He said that he calls me later.'
+                ],
+                correct: 1,
+                explanation: 'Modal "will" berubah (backshift) menjadi "would", dan pronoun "you" disesuaikan menjadi "me".'
+            },
+            {
+                q: 'She said, "I am studying English now."',
+                options: [
+                    'She said that she was studying English then.',
+                    'She said that she is studying English now.',
+                    'She said that she studied English then.',
+                    'She said that she had studied English.'
+                ],
+                correct: 0,
+                explanation: 'Present Continuous ("am studying") berubah menjadi Past Continuous ("was studying"), dan "now" menjadi "then".'
+            },
+            {
+                q: '"Don\'t make noise!" the librarian said.',
+                options: [
+                    'The librarian said to not make noise.',
+                    'The librarian told us don\'t make noise.',
+                    'The librarian told us not to make noise.',
+                    'The librarian asked that we don\'t make noise.'
+                ],
+                correct: 2,
+                explanation: 'Kalimat larangan (Negative Command) menggunakan struktur "told/asked + object + not to + V1".'
+            },
+            {
+                q: 'He asked me, "Where do you live?"',
+                options: [
+                    'He asked me where did I live.',
+                    'He asked me where I lived.',
+                    'He asked me where I live.',
+                    'He asked me where do I live.'
+                ],
+                correct: 1,
+                explanation: 'Wh-Question diubah menjadi susunan positif (Subject + Verb2): "where I lived".'
+            },
+            {
+                q: 'The teacher said, "The earth goes around the sun."',
+                options: [
+                    'The teacher said that the earth went around the sun.',
+                    'The teacher said that the earth goes around the sun.',
+                    'The teacher said that the earth had gone around the sun.',
+                    'The teacher says that the earth went around the sun.'
+                ],
+                correct: 1,
+                explanation: 'Kebenaran umum (General Truth) TIDAK mengalami backshift tenses.'
+            },
+            {
+                q: '"Have you seen my watch?" asked David.',
+                options: [
+                    'David asked if I had seen his watch.',
+                    'David asked if I saw his watch.',
+                    'David asked that I have seen his watch.',
+                    'David asked where I had seen his watch.'
+                ],
+                correct: 0,
+                explanation: 'Yes/No Question menggunakan "if/whether", dan Present Perfect ("have seen") menjadi Past Perfect ("had seen").'
+            },
+            {
+                q: 'She says, "I enjoy cooking."',
+                options: [
+                    'She says that she enjoyed cooking.',
+                    'She says that she enjoys cooking.',
+                    'She said that she enjoyed cooking.',
+                    'She says that I enjoy cooking.'
+                ],
+                correct: 1,
+                explanation: 'Karena reporting verb berbentuk Present ("says"), tenses di dalam kalimat tidak berubah.'
+            },
+            {
+                q: '"Please sit down," the manager said.',
+                options: [
+                    'The manager ordered me sit down.',
+                    'The manager asked me to sit down.',
+                    'The manager said that I sit down.',
+                    'The manager told to sit down.'
+                ],
+                correct: 1,
+                explanation: 'Permintaan sopan (Request) diubah menjadi "asked me to sit down".'
+            },
+            {
+                q: 'They said, "We bought a new car yesterday."',
+                options: [
+                    'They said that they bought a new car yesterday.',
+                    'They said that they had bought a new car the day before.',
+                    'They said that we had bought a new car the previous day.',
+                    'They said that they have bought a new car the day before.'
+                ],
+                correct: 1,
+                explanation: 'Simple Past ("bought") berubah menjadi Past Perfect ("had bought"), dan "yesterday" menjadi "the day before".'
+            },
+            {
+                q: '"I can speak French," Maya said.',
+                options: [
+                    'Maya said that she can speak French.',
+                    'Maya said that she could speak French.',
+                    'Maya said that she couldn\'t speak French.',
+                    'Maya said that I could speak French.'
+                ],
+                correct: 1,
+                explanation: 'Modal "can" berubah menjadi "could" dalam reported speech.'
+            }
+        ];
+
+        // 4. TRANSFORMATION EXERCISES DATA
+        const transQuestions = [
+            {
+                direct: '"I will clean my room," Andi said.',
+                target: 'Andi said that he would clean his room.'
+            },
+            {
+                direct: 'She asked, "Are you coming?"',
+                target: 'She asked if I was coming.'
+            },
+            {
+                direct: 'The officer said, "Stop!"',
+                target: 'The officer told me to stop.'
+            },
+            {
+                direct: 'He said, "I have finished."',
+                target: 'He said that he had finished.'
+            },
+            {
+                direct: '"Don\'t cry," mother said.',
+                target: 'Mother told me not to cry.'
+            }
+        ];
+
+
+        // ---------------- STATE VARIABLES ----------------
+        let currentMateriTopic = 1;
+        let currentMCQIndex = 0;
+        let userMCQAnswers = new Array(mcqQuestions.length).fill(null);
+        let currentTransIndex = 0;
+
+
+        // ---------------- NAVIGATION LOGIC ----------------
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected page
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update Navbar Active State Indicators
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const indicator = btn.querySelector('.nav-indicator');
+                if (btn.id === `nav-${pageId}`) {
+                    btn.classList.add('text-white');
+                    btn.classList.remove('text-slate-200');
+                    if (indicator) indicator.classList.remove('opacity-0');
+                } else {
+                    btn.classList.remove('text-white');
+                    btn.classList.add('text-slate-200');
+                    if (indicator) indicator.classList.add('opacity-0');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+
+        // ---------------- MATERI MODAL & READER LOGIC ----------------
+        function openMateriTopic(topicNum) {
+            currentMateriTopic = topicNum;
+            updateMateriModal();
+            document.getElementById('materi-modal').classList.remove('hidden');
+        }
+
+        function closeMateriModal() {
+            document.getElementById('materi-modal').classList.add('hidden');
+        }
+
+        function updateMateriModal() {
+            const topic = materiData[currentMateriTopic];
+            document.getElementById('modal-topic-number').innerText = currentMateriTopic;
+            document.getElementById('modal-topic-title').innerText = topic.title;
+            document.getElementById('modal-topic-content').innerHTML = `
+                <p class="text-sm text-slate-500 font-bold uppercase tracking-wider mb-2">${topic.subtitle}</p>
+                ${topic.html}
+            `;
+
+            // Disable/Enable buttons based on range
+            document.getElementById('modal-btn-prev').disabled = (currentMateriTopic <= 1);
+            document.getElementById('modal-btn-next').disabled = (currentMateriTopic >= 7);
+
+            document.getElementById('modal-btn-prev').classList.toggle('opacity-50', currentMateriTopic <= 1);
+            document.getElementById('modal-btn-next').classList.toggle('opacity-50', currentMateriTopic >= 7);
+        }
+
+        function navigateMateriModal(direction) {
+            const newTopic = currentMateriTopic + direction;
+            if (newTopic >= 1 && newTopic <= 7) {
+                currentMateriTopic = newTopic;
+                updateMateriModal();
+            }
+        }
+
+
+        // ---------------- EXAMPLES FILTER LOGIC ----------------
+        function filterExamples(category) {
+            const tbody = document.getElementById('example-table-body');
+            const titleEl = document.getElementById('example-category-title');
+            tbody.innerHTML = '';
+
+            // Update UI buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-navy-800', 'text-white', 'shadow-sm');
+                btn.classList.add('text-slate-700', 'hover:bg-slate-100');
+                const chev = btn.querySelector('.fa-chevron-right');
+                if (chev) chev.classList.add('opacity-0');
+            });
+
+            const activeBtn = document.getElementById(`filter-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-navy-800', 'text-white', 'shadow-sm');
+                activeBtn.classList.remove('text-slate-700', 'hover:bg-slate-100');
+                const chev = activeBtn.querySelector('.fa-chevron-right');
+                if (chev) chev.classList.remove('opacity-0');
+            }
+
+            let rows = [];
+            if (category === 'all') {
+                titleEl.innerText = 'Semua Contoh Kalimat';
+                Object.values(examplesData).forEach(arr => rows.push(...arr));
+            } else {
+                const names = {
+                    statements: 'Contoh Statements (Pernyataan)',
+                    commands: 'Contoh Commands & Requests',
+                    questions: 'Contoh Questions (Kalimat Tanya)',
+                    nobackshift: 'Contoh No Backshift'
+                };
+                titleEl.innerText = names[category] || 'Contoh Kalimat';
+                rows = examplesData[category] || [];
+            }
+
+            rows.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50';
+                tr.innerHTML = `
+                    <td class="p-4 pl-6 text-slate-800">${item.direct}</td>
+                    <td class="p-4 pr-6 text-navy-800 font-semibold">${item.indirect}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+
+        // ---------------- QUIZ & LATIHAN LOGIC ----------------
+        function switchQuizMode(mode) {
+            // Update sidebar buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('bg-navy-800', 'text-white', 'shadow-sm');
+                btn.classList.add('text-slate-700', 'hover:bg-slate-100');
+                const check = btn.querySelector('.fa-circle-check');
+                if (check) check.classList.add('opacity-0');
+            });
+
+            const activeBtn = document.getElementById(`mode-btn-${mode}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-navy-800', 'text-white', 'shadow-sm');
+                activeBtn.classList.remove('text-slate-700', 'hover:bg-slate-100');
+                const check = activeBtn.querySelector('.fa-circle-check');
+                if (check) check.classList.remove('opacity-0');
+            }
+
+            // Hide containers
+            document.querySelectorAll('.quiz-container').forEach(el => el.classList.add('hidden'));
+
+            if (mode === 'mcq') {
+                document.getElementById('quiz-mode-mcq').classList.remove('hidden');
+                renderMCQ();
+            } else if (mode === 'transform') {
+                document.getElementById('quiz-mode-transform').classList.remove('hidden');
+                renderTrans();
+            } else if (mode === 'review') {
+                document.getElementById('quiz-mode-review').classList.remove('hidden');
+                renderReview();
+            }
+        }
+
+        // --- MCQ Functions ---
+        function renderMCQ() {
+            const q = mcqQuestions[currentMCQIndex];
+            document.getElementById('mcq-question-number').innerText = `${currentMCQIndex + 1}. Pilih jawaban yang paling tepat!`;
+            document.getElementById('mcq-question-text').innerText = q.q;
+
+            const container = document.getElementById('mcq-options-container');
+            container.innerHTML = '';
+
+            const labels = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const isSelected = userMCQAnswers[currentMCQIndex] === idx;
+                const label = document.createElement('label');
+                label.className = `flex items-center gap-3 p-4 rounded-xl border transition-all cursor-pointer font-medium ${
+                    isSelected ? 'border-navy-800 bg-sky-soft text-navy-800 ring-2 ring-navy-800/20' : 'border-slate-200 hover:bg-slate-50 text-slate-700'
+                }`;
+                label.innerHTML = `
+                    <input type="radio" name="mcq-option" value="${idx}" ${isSelected ? 'checked' : ''} onchange="selectMCQOption(${idx})" class="w-4 h-4 text-navy-800 focus:ring-navy-800">
+                    <span class="font-bold">${labels[idx]}.</span>
+                    <span class="text-sm sm:text-base">${opt}</span>
+                `;
+                container.appendChild(label);
+            });
+
+            // Update Progress Counter & Bar
+            const total = mcqQuestions.length;
+            const currentNum = currentMCQIndex + 1;
+            document.getElementById('quiz-progress-counter').innerText = `${currentNum}/${total}`;
+            document.getElementById('quiz-progress-bar').style.width = `${(currentNum / total) * 100}%`;
+
+            // Update Nav Buttons
+            document.getElementById('btn-mcq-prev').disabled = (currentMCQIndex === 0);
+            document.getElementById('btn-mcq-prev').classList.toggle('opacity-40', currentMCQIndex === 0);
+        }
+
+        function selectMCQOption(idx) {
+            userMCQAnswers[currentMCQIndex] = idx;
+            renderMCQ();
+        }
+
+        function nextMCQ() {
+            if (currentMCQIndex < mcqQuestions.length - 1) {
+                currentMCQIndex++;
+                renderMCQ();
+            } else {
+                // Show completion summary modal or jump to review
+                switchQuizMode('review');
+            }
+        }
+
+        function prevMCQ() {
+            if (currentMCQIndex > 0) {
+                currentMCQIndex--;
+                renderMCQ();
+            }
+        }
+
+        // --- Transformation Functions ---
+        function renderTrans() {
+            const item = transQuestions[currentTransIndex];
+            document.getElementById('trans-number').innerText = `Latihan Ubah Kalimat (${currentTransIndex + 1}/${transQuestions.length}):`;
+            document.getElementById('trans-direct-text').innerText = item.direct;
+            document.getElementById('trans-user-input').value = '';
+            document.getElementById('trans-feedback').classList.add('hidden');
+
+            document.getElementById('btn-trans-prev').disabled = (currentTransIndex === 0);
+            document.getElementById('btn-trans-prev').classList.toggle('opacity-40', currentTransIndex === 0);
+        }
+
+        function checkTransformation() {
+            const userText = document.getElementById('trans-user-input').value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+            const targetText = transQuestions[currentTransIndex].target.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+            const feedback = document.getElementById('trans-feedback');
+            feedback.classList.remove('hidden');
+
+            if (userText === targetText) {
+                feedback.className = "p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-2"></i> Sangat Tepat! Jawaban kamu benar.`;
+            } else {
+                feedback.className = "p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 font-medium";
+                feedback.innerHTML = `
+                    <p class="font-bold text-rose-900"><i class="fa-solid fa-circle-xmark mr-2"></i> Kurang Tepat.</p>
+                    <p class="mt-1 text-xs">Jawaban acuan: <span class="font-semibold">${transQuestions[currentTransIndex].target}</span></p>
+                `;
+            }
+        }
+
+        function nextTrans() {
+            if (currentTransIndex < transQuestions.length - 1) {
+                currentTransIndex++;
+                renderTrans();
+            }
+        }
+
+        function prevTrans() {
+            if (currentTransIndex > 0) {
+                currentTransIndex--;
+                renderTrans();
+            }
+        }
+
+        // --- Review Pembahasan Functions ---
+        function renderReview() {
+            const container = document.getElementById('review-list-container');
+            container.innerHTML = '';
+
+            let score = 0;
+
+            mcqQuestions.forEach((q, idx) => {
+                const userChoice = userMCQAnswers[idx];
+                const isCorrect = userChoice === q.correct;
+                if (isCorrect) score++;
+
+                const card = document.createElement('div');
+                card.className = "p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-sm";
+                
+                const labels = ['A', 'B', 'C', 'D'];
+                const userText = userChoice !== null ? `${labels[userChoice]}. ${q.options[userChoice]}` : 'Belum dijawab';
+                const correctText = `${labels[q.correct]}. ${q.options[q.correct]}`;
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="font-bold text-navy-800">${idx + 1}. ${q.q}</span>
+                        ${userChoice !== null ? 
+                            (isCorrect ? '<span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 font-extrabold text-xs rounded-md">Benar</span>' : '<span class="px-2.5 py-1 bg-rose-100 text-rose-700 font-extrabold text-xs rounded-md">Salah</span>')
+                            : '<span class="px-2.5 py-1 bg-slate-200 text-slate-600 font-bold text-xs rounded-md">Kosong</span>'
+                        }
+                    </div>
+                    <div class="text-xs space-y-1">
+                        <p class="text-slate-600">Jawaban Anda: <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${userText}</span></p>
+                        <p class="text-emerald-700 font-bold">Jawaban Benar: ${correctText}</p>
+                    </div>
+                    <div class="p-2.5 bg-white rounded-lg border border-slate-200 text-xs text-slate-600 mt-2">
+                        <strong>Pembahasan:</strong> ${q.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+
+        // ---------------- LIVE SEARCH LOGIC ----------------
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.remove('hidden');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function handleLiveSearch() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const container = document.getElementById('search-results');
+
+            if (query === '') {
+                container.innerHTML = `<p class="text-sm text-slate-400 text-center py-6">Ketik kata kunci untuk mulai mencari...</p>`;
+                return;
+            }
+
+            let matches = [];
+
+            // Search Materi
+            Object.keys(materiData).forEach(key => {
+                const topic = materiData[key];
+                if (topic.title.toLowerCase().includes(query) || topic.subtitle.toLowerCase().includes(query)) {
+                    matches.push({ type: 'materi', id: key, title: topic.title, desc: topic.subtitle });
+                }
+            });
+
+            // Search Examples
+            Object.keys(examplesData).forEach(cat => {
+                examplesData[cat].forEach(ex => {
+                    if (ex.direct.toLowerCase().includes(query) || ex.indirect.toLowerCase().includes(query)) {
+                        matches.push({ type: 'contoh', cat: cat, title: ex.direct, desc: `Indirect: ${ex.indirect}` });
+                    }
+                });
+            });
+
+            if (matches.length === 0) {
+                container.innerHTML = `<p class="text-sm text-slate-400 text-center py-6">Tidak ada hasil yang ditemukan untuk "${query}".</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            matches.forEach(m => {
+                const item = document.createElement('div');
+                item.className = "p-3 rounded-xl hover:bg-sky-50 transition cursor-pointer flex items-center justify-between";
+                if (m.type === 'materi') {
+                    item.onclick = () => { closeSearchModal(); navigateTo('materi'); openMateriTopic(m.id); };
+                    item.innerHTML = `
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 uppercase">Materi ${m.id}</span>
+                            <h4 class="font-bold text-slate-900 text-sm">${m.title}</h4>
+                            <p class="text-xs text-slate-500">${m.desc}</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                    `;
+                } else {
+                    item.onclick = () => { closeSearchModal(); navigateTo('contoh'); filterExamples(m.cat); };
+                    item.innerHTML = `
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Contoh Kalimat</span>
+                            <h4 class="font-bold text-slate-900 text-sm">${m.title}</h4>
+                            <p class="text-xs text-slate-500">${m.desc}</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                    `;
+                }
+                container.appendChild(item);
+            });
+        }
+
+
+        // ---------------- INITIALIZATION ----------------
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set initial state
+            filterExamples('all');
+            renderMCQ();
+
+            // Keyboard shortcut Escape for Modal
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMateriModal();
+                    closeSearchModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
