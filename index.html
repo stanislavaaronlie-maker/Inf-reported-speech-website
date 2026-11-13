@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reported Speech Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="brand" onclick="navigateTo('home')">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Reported Speech</span>
+          <span class="brand-subtitle">Learning Hub</span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active" data-page="home" onclick="navigateTo('home'); return false;">Home</a></li>
+          <li><a href="#materi" class="nav-link" data-page="materi" onclick="navigateTo('materi'); return false;">Materi</a></li>
+          <li><a href="#contoh" class="nav-link" data-page="contoh" onclick="navigateTo('contoh'); return false;">Contoh</a></li>
+          <li><a href="#latihan" class="nav-link" data-page="latihan" onclick="navigateTo('latihan'); return false;">Latihan</a></li>
+          <li><a href="#about" class="nav-link" data-page="about" onclick="navigateTo('about'); return false;">About</a></li>
+        </ul>
+
+        <button class="search-btn" onclick="openSearchModal()" aria-label="Cari materi atau contoh">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= 1. HALAMAN HOME ================= -->
+    <section id="view-home" class="page-view active">
+      <div class="hero-section">
+        <div class="container hero-grid">
+          <div>
+            <h1 class="hero-title">Learn<br />Reported Speech!</h1>
+            <p class="hero-desc">Pelajari kalimat tidak langsung Bahasa Inggris dengan mudah.</p>
+            <button class="btn-gold" onclick="navigateTo('materi')">
+              Mulai Belajar <span>→</span>
+            </button>
+          </div>
+
+          <div class="hero-illustration">
+            <!-- Ilustrasi Siswa & Speech Bubble "He said that..." -->
+            <svg width="390" height="260" viewBox="0 0 390 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="255" cy="155" rx="115" ry="92" fill="#C7E2FF"/>
+              <!-- Speech Bubble -->
+              <rect x="24" y="34" width="168" height="54" rx="27" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5"/>
+              <path d="M168 78L186 88L178 68" fill="#FFFFFF"/>
+              <path d="M168 78L186 88L178 68" stroke="#17335C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="108" y="66" text-anchor="middle" fill="#17335C" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="15">“He said that...”</text>
+              <!-- Sparkles -->
+              <path d="M350 42L353 50L361 53L353 56L350 64L347 56L339 53L347 50Z" stroke="#17335C" stroke-width="1.8" fill="#FFFFFF"/>
+              <path d="M332 82L334 87L339 89L334 91L332 96L330 91L325 89L330 87Z" stroke="#17335C" stroke-width="1.8" fill="#FFFFFF"/>
+              <path d="M198 118L200 123L205 125L200 127L198 132L196 127L191 125L196 123Z" stroke="#17335C" stroke-width="1.8" fill="#FFFFFF"/>
+              <!-- Student Character -->
+              <path d="M174 252C176 202 204 176 254 176C304 176 332 202 336 252H174Z" fill="#17335C"/>
+              <!-- Neck & Head -->
+              <rect x="242" y="148" width="24" height="32" rx="10" fill="#FDBA8C"/>
+              <circle cx="254" cy="116" r="38" fill="#FDBA8C"/>
+              <!-- Hair -->
+              <path d="M215 112C213 84 232 68 258 68C284 68 299 84 295 112C291 98 278 92 256 92C236 92 222 98 215 112Z" fill="#0F2342"/>
+              <!-- Eyes & Smile -->
+              <circle cx="241" cy="115" r="2.8" fill="#17335C"/>
+              <circle cx="266" cy="115" r="2.8" fill="#17335C"/>
+              <path d="M248 130C252 134 258 134 262 130" stroke="#17335C" stroke-width="2.3" stroke-linecap="round"/>
+              <!-- Thinking Hand & Pencil -->
+              <line x1="206" y1="128" x2="230" y2="144" stroke="#17335C" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="225" cy="144" r="10" fill="#FDBA8C"/>
+              <!-- Open Book -->
+              <path d="M196 204L254 214L312 204L304 236L254 244L204 236Z" fill="#FFFFFF" stroke="#17335C" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="254" y1="214" x2="254" y2="244" stroke="#17335C" stroke-width="2.2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="container section-block">
+        <h2 class="section-heading">Pilih Materi</h2>
+        <div class="home-cards-grid">
+          <div class="topic-quick-card" onclick="openTopicModal(1)">
+            <div class="quick-icon icon-blue">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <span class="quick-card-title">Pengertian</span>
+          </div>
+
+          <div class="topic-quick-card" onclick="openTopicModal(2)">
+            <div class="quick-icon icon-yellow">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 9 14"/></svg>
+            </div>
+            <span class="quick-card-title">Backshift</span>
+          </div>
+
+          <div class="topic-quick-card" onclick="openTopicModal(4)">
+            <div class="quick-icon icon-green">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <span class="quick-card-title">Statements</span>
+          </div>
+
+          <div class="topic-quick-card" onclick="openTopicModal(5)">
+            <div class="quick-icon icon-purple">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+            <span class="quick-card-title">Commands &amp; Requests</span>
+          </div>
+
+          <div class="topic-quick-card" onclick="openTopicModal(6)">
+            <div class="quick-icon icon-red">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <span class="quick-card-title">Questions</span>
+          </div>
+
+          <div class="topic-quick-card" onclick="openTopicModal(7)">
+            <div class="quick-icon icon-teal">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="quick-card-title">No Backshift</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. HALAMAN MATERI ================= -->
+    <section id="view-materi" class="page-view">
+      <div class="page-banner">
+        <div class="container banner-grid">
+          <div>
+            <h1 class="page-title">Materi Reported Speech</h1>
+            <p class="page-subtitle">Pahami konsep, aturan, dan perubahan dalam Reported Speech melalui penjelasan yang mudah dan terstruktur.</p>
+          </div>
+          <div>
+            <svg width="250" height="115" viewBox="0 0 250 115" fill="none">
+              <rect x="20" y="72" width="110" height="18" rx="4" fill="#3B82F6" stroke="#17335C" stroke-width="2"/>
+              <rect x="28" y="54" width="102" height="18" rx="4" fill="#10B981" stroke="#17335C" stroke-width="2"/>
+              <rect x="24" y="36" width="106" height="18" rx="4" fill="#FACC15" stroke="#17335C" stroke-width="2"/>
+              <rect x="148" y="48" width="32" height="42" rx="5" fill="#60A5FA" stroke="#17335C" stroke-width="2"/>
+              <line x1="156" y1="48" x2="152" y2="24" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+              <line x1="164" y1="48" x2="164" y2="20" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+              <line x1="172" y1="48" x2="177" y2="25" stroke="#10B981" stroke-width="4" stroke-linecap="round"/>
+              <text x="192" y="44" fill="#17335C" font-weight="800" font-size="12">Small</text>
+              <text x="192" y="60" fill="#17335C" font-weight="800" font-size="12">Steps</text>
+              <text x="192" y="76" fill="#2563EB" font-weight="800" font-size="12">Big Progress</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="materi-grid">
+          <div class="materi-card" onclick="openTopicModal(1)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-1">1</span>
+                <h3 class="materi-card-title">Pengertian</h3>
+              </div>
+              <p class="materi-card-desc">Apa itu Reported Speech? Dan kapan digunakan?</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card" onclick="openTopicModal(2)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-2">2</span>
+                <h3 class="materi-card-title">Backshift</h3>
+              </div>
+              <p class="materi-card-desc">Perubahan tense dalam indirect speech.</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card" onclick="openTopicModal(3)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-3">3</span>
+                <h3 class="materi-card-title">Pronoun &amp; Adverbs</h3>
+              </div>
+              <p class="materi-card-desc">Penyesuaian kata ganti dan keterangan waktu/tempat.</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card" onclick="openTopicModal(4)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-4">4</span>
+                <h3 class="materi-card-title">Statements</h3>
+              </div>
+              <p class="materi-card-desc">Cara mengubah kalimat pernyataan.</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card" onclick="openTopicModal(5)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-5">5</span>
+                <h3 class="materi-card-title">Commands &amp; Requests</h3>
+              </div>
+              <p class="materi-card-desc">Cara mengubah perintah dan larangan.</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card" onclick="openTopicModal(6)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-6">6</span>
+                <h3 class="materi-card-title">Questions</h3>
+              </div>
+              <p class="materi-card-desc">Cara mengubah kalimat tanya.</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+
+          <div class="materi-card span-full" onclick="openTopicModal(7)">
+            <div>
+              <div class="materi-card-header">
+                <span class="badge-num badge-7">7</span>
+                <h3 class="materi-card-title">No Backshift (Pengecualian)</h3>
+              </div>
+              <p class="materi-card-desc">Kapan bentuk tense tidak mengalami perubahan?</p>
+            </div>
+            <span class="materi-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. HALAMAN CONTOH KALIMAT ================= -->
+    <section id="view-contoh" class="page-view">
+      <div class="page-banner">
+        <div class="container banner-grid">
+          <div>
+            <h1 class="page-title">Contoh Kalimat</h1>
+            <p class="page-subtitle">Lihat berbagai contoh perubahan kalimat langsung (Direct Speech) menjadi tidak langsung (Indirect Speech) sesuai dengan jenisnya.</p>
+          </div>
+          <div>
+            <svg width="280" height="105" viewBox="0 0 280 105" fill="none">
+              <rect x="8" y="18" width="96" height="42" rx="21" fill="#FFFFFF" stroke="#17335C" stroke-width="2"/>
+              <text x="56" y="44" text-anchor="middle" fill="#17335C" font-weight="700" font-size="13">“I'm busy.”</text>
+              <path d="M110 42H132M132 42L125 36M132 42L125 48" stroke="#17335C" stroke-width="2.2" stroke-linecap="round"/>
+              <rect x="140" y="28" width="132" height="54" rx="16" fill="#FFFFFF" stroke="#17335C" stroke-width="2"/>
+              <text x="206" y="51" text-anchor="middle" fill="#17335C" font-weight="700" font-size="12">He said</text>
+              <text x="206" y="68" text-anchor="middle" fill="#2563EB" font-weight="700" font-size="12">that he was busy.</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="container contoh-layout">
+        <aside class="filter-sidebar">
+          <button class="filter-btn active" onclick="filterExamples('all', this)">Semua Contoh</button>
+          <button class="filter-btn" onclick="filterExamples('statements', this)">Statements</button>
+          <button class="filter-btn" onclick="filterExamples('commands', this)">Commands &amp; Requests</button>
+          <button class="filter-btn" onclick="filterExamples('questions', this)">Questions</button>
+          <button class="filter-btn" onclick="filterExamples('nobackshift', this)">No Backshift</button>
+        </aside>
+
+        <div class="contoh-panel">
+          <div id="examplesContainer"></div>
+
+          <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <div class="tip-content">
+              <strong>Ingat!</strong>
+              <p>Bentuk waktu biasanya dimundurkan satu tahap (backshift) serta kata ganti dan keterangan waktu/tempat juga disesuaikan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. HALAMAN LATIHAN SOAL ================= -->
+    <section id="view-latihan" class="page-view">
+      <div class="page-banner">
+        <div class="container banner-grid">
+          <div>
+            <h1 class="page-title">Latihan Soal</h1>
+            <p class="page-subtitle">Uji pemahamanmu dengan mengerjakan soal berikut. Pilih jawaban yang paling tepat!</p>
+          </div>
+          <div>
+            <svg width="210" height="105" viewBox="0 0 210 105" fill="none">
+              <rect x="20" y="14" width="66" height="80" rx="8" fill="#FFFFFF" stroke="#17335C" stroke-width="2"/>
+              <line x1="34" y1="34" x2="72" y2="34" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="34" y1="50" x2="72" y2="50" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="34" y1="66" x2="62" y2="66" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M98 76L116 26L124 29L106 79L96 84Z" fill="#FACC15" stroke="#17335C" stroke-width="2"/>
+              <text x="145" y="42" fill="#17335C" font-weight="800" font-size="14" font-style="italic">You</text>
+              <text x="145" y="60" fill="#17335C" font-weight="800" font-size="14" font-style="italic">Can</text>
+              <text x="145" y="78" fill="#2563EB" font-weight="800" font-size="14" font-style="italic">Do It!</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="container latihan-layout">
+        <div class="quiz-card" id="quizMainArea"></div>
+
+        <aside class="quiz-sidebar">
+          <div class="sidebar-box">
+            <h3 class="sidebar-box-title">Progress</h3>
+            <div class="progress-track">
+              <div class="progress-fill" id="quizProgressBar" style="width: 10%;"></div>
+            </div>
+            <span class="progress-label" id="quizProgressText">1/10</span>
+          </div>
+
+          <div class="sidebar-box">
+            <h3 class="sidebar-box-title">Jenis Latihan</h3>
+            <div class="mode-list">
+              <button class="mode-btn active" id="mode-mcq" onclick="switchQuizMode('mcq')">
+                <span class="mode-dot"></span> Pilihan Ganda
+              </button>
+              <button class="mode-btn" id="mode-transform" onclick="switchQuizMode('transform')">
+                <span class="mode-dot"></span> Ubah Kalimat
+              </button>
+              <button class="mode-btn" id="mode-review" onclick="switchQuizMode('review')">
+                <span class="mode-dot"></span> Pembahasan
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= 5. HALAMAN ABOUT ================= -->
+    <section id="view-about" class="page-view">
+      <div class="page-banner">
+        <div class="container banner-grid">
+          <div>
+            <h1 class="page-title">Tentang Website</h1>
+            <p class="page-subtitle">Reported Speech Learning Hub adalah website pembelajaran Bahasa Inggris yang dibuat untuk membantu siswa SMA kelas XI memahami materi Reported Speech dengan cara yang mudah, menarik, dan interaktif.</p>
+          </div>
+          <div>
+            <svg width="260" height="135" viewBox="0 0 260 135" fill="none">
+              <rect x="44" y="18" width="136" height="86" rx="8" fill="#17335C"/>
+              <rect x="52" y="26" width="120" height="70" rx="4" fill="#1E3A8A"/>
+              <text x="112" y="57" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="11">Better English</text>
+              <text x="112" y="73" text-anchor="middle" fill="#FACC15" font-weight="700" font-size="11">Brighter Future</text>
+              <path d="M28 104H196L206 114H18L28 104Z" fill="#94A3B8"/>
+              <!-- Plant & Books -->
+              <rect x="200" y="74" width="26" height="24" rx="4" fill="#D97706" stroke="#17335C" stroke-width="2"/>
+              <path d="M213 74C213 58 200 50 202 42C210 44 214 56 213 74Z" fill="#10B981" stroke="#17335C" stroke-width="1.8"/>
+              <path d="M213 74C213 56 226 48 224 40C216 42 212 54 213 74Z" fill="#059669" stroke="#17335C" stroke-width="1.8"/>
+              <rect x="192" y="98" width="46" height="10" rx="3" fill="#3B82F6" stroke="#17335C" stroke-width="1.8"/>
+              <rect x="195" y="108" width="44" height="10" rx="3" fill="#FACC15" stroke="#17335C" stroke-width="1.8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="about-cards-grid">
+          <div class="about-card">
+            <div class="about-card-header">
+              <span>⭐</span>
+              <h3 class="about-card-title">Tujuan</h3>
+            </div>
+            <p>Membantu siswa memahami materi Reported Speech melalui penjelasan yang sederhana, contoh yang relevan, dan latihan soal.</p>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-header">
+              <span>🎯</span>
+              <h3 class="about-card-title">Target Pengguna</h3>
+            </div>
+            <ul>
+              <li>Siswa SMA kelas XI</li>
+              <li>Siswa yang ingin belajar mandiri</li>
+              <li>Guru Bahasa Inggris</li>
+            </ul>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-header">
+              <span>👥</span>
+              <h3 class="about-card-title">Kontak / Identitas</h3>
+            </div>
+            <p>
+              <strong>Dibuat oleh:</strong><br />
+              Kelompok 5<br />
+              Kelas XI-1A2<br />
+              Tahun 2025
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-spacer"></div>
+      <div class="footer-center">
+        <div class="footer-title">Reported Speech Learning Hub</div>
+        <div class="footer-tagline">Better English, Brighter Future</div>
+      </div>
+      <div class="footer-socials">
+        <a href="#about" onclick="navigateTo('about'); return false;" class="social-pill" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
+        </a>
+        <a href="#materi" onclick="navigateTo('materi'); return false;" class="social-pill" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </a>
+        <a href="#latihan" onclick="navigateTo('latihan'); return false;" class="social-pill" aria-label="Latihan">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL DETAIL MATERI ================= -->
+  <div class="modal-backdrop" id="topicModal" onclick="closeModalOnBackdrop(event, 'topicModal')">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('topicModal')" aria-label="Tutup">×</button>
+      <div class="modal-body" id="topicModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PENCARIAN ================= -->
+  <div class="modal-backdrop" id="searchModal" onclick="closeModalOnBackdrop(event, 'searchModal')">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal('searchModal')" aria-label="Tutup">×</button>
+      <div class="modal-body">
+        <h3>Cari Materi &amp; Contoh Kalimat</h3>
+        <input type="text" id="searchInput" class="search-input" placeholder="Ketik kata kunci, misal: backshift, questions, tomorrow..." oninput="handleSearch(this.value)" />
+        <div id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT INTERAKTIF ================= -->
+  <script>
+    // Data 7 Materi Reported Speech
+    const topicsData = [
+      {
+        id: 1,
+        title: "1. Pengertian Reported Speech",
+        summary: "Apa itu Reported Speech? Dan kapan digunakan?",
+        body: `
+          <p><strong>Reported Speech</strong> (Indirect Speech) adalah kalimat tidak langsung yang digunakan untuk menyampaikan kembali ucapan atau perkataan seseorang tanpa mengutip kata demi kata secara persis (tanpa tanda kutip).</p>
+          <div class="formula-box">Direct Speech: She said, “I am happy.”<br>Indirect Speech: She said that she was happy.</div>
+          <p><strong>Kapan digunakan?</strong> Saat kita menceritakan kembali informasi, pernyataan, perintah, atau pertanyaan orang lain kepada pendengar baru.</p>
+        `
+      },
+      {
+        id: 2,
+        title: "2. Backshift (Perubahan Tense)",
+        summary: "Perubahan tense dalam indirect speech.",
+        body: `
+          <p>Jika <em>reporting verb</em> berbentuk lampau (<strong>said, told, asked</strong>), maka kata kerja (tense) di dalam kalimat langsung dimundurkan satu tahap ke masa lampau (<strong>backshift</strong>):</p>
+          <table class="speech-table">
+            <thead><tr><th>Direct Speech</th><th>Indirect Speech</th></tr></thead>
+            <tbody>
+              <tr><td>Simple Present (am/is/are, V1)</td><td>Simple Past (was/were, V2)</td></tr>
+              <tr><td>Present Continuous (is/am/are + V-ing)</td><td>Past Continuous (was/were + V-ing)</td></tr>
+              <tr><td>Simple Past (V2)</td><td>Past Perfect (had + V3)</td></tr>
+              <tr><td>Present Perfect (have/has + V3)</td><td>Past Perfect (had + V3)</td></tr>
+              <tr><td>Future (will + V1)</td><td>Past Future (would + V1)</td></tr>
+              <tr><td>Can / May / Must</td><td>Could / Might / Had to</td></tr>
+            </tbody>
+          </table>
+        `
+      },
+      {
+        id: 3,
+        title: "3. Pronoun & Adverbs",
+        summary: "Penyesuaian kata ganti dan keterangan waktu/tempat.",
+        body: `
+          <p>Selain tense, <strong>kata ganti orang (pronoun)</strong> dan <strong>keterangan waktu/tempat (adverbs)</strong> harus disesuaikan dengan sudut pandang pelapor:</p>
+          <table class="speech-table">
+            <thead><tr><th>Direct Speech</th><th>Indirect Speech</th></tr></thead>
+            <tbody>
+              <tr><td>I / We</td><td>He, She / They</td></tr>
+              <tr><td>My / Our</td><td>His, Her / Their</td></tr>
+              <tr><td>Now</td><td>Then / At that time</td></tr>
+              <tr><td>Today</td><td>That day</td></tr>
+              <tr><td>Tomorrow</td><td>The next day / The following day</td></tr>
+              <tr><td>Yesterday</td><td>The day before / The previous day</td></tr>
+              <tr><td>Here / This</td><td>There / That</td></tr>
+            </tbody>
+          </table>
+        `
+      },
+      {
+        id: 4,
+        title: "4. Statements (Kalimat Pernyataan)",
+        summary: "Cara mengubah kalimat pernyataan.",
+        body: `
+          <p>Untuk kalimat pernyataan berita, gunakan kata penghubung <strong>that</strong> (bersifat opsional) setelah reporting verb seperti <em>said</em> atau <em>told + object</em>.</p>
+          <div class="formula-box">S + said (that) + S + Verb (backshift)<br>S + told + Object + (that) + S + Verb (backshift)</div>
+          <p><strong>Contoh:</strong><br>Direct: <em>They said, "We will come tomorrow."</em><br>Indirect: <em>They said that they would come the next day.</em></p>
+        `
+      },
+      {
+        id: 5,
+        title: "5. Commands & Requests (Perintah & Larangan)",
+        summary: "Cara mengubah perintah dan larangan.",
+        body: `
+          <p>Kalimat perintah (<em>imperative</em>) tidak mengalami backshift tense, melainkan diubah menggunakan pola <strong>to-infinitive</strong>:</p>
+          <div class="formula-box">Perintah Positif: S + told/ordered/asked + Object + to + V1<br>Larangan (Negatif): S + told/warned + Object + not to + V1</div>
+          <p><strong>Contoh:</strong><br>• Direct: <em>The teacher said, "Open your book!"</em> → Indirect: <em>The teacher told us to open our book.</em><br>• Direct: <em>Mother said, "Don't be late!"</em> → Indirect: <em>Mother told me not to be late.</em></p>
+        `
+      },
+      {
+        id: 6,
+        title: "6. Questions (Kalimat Tanya)",
+        summary: "Cara mengubah kalimat tanya.",
+        body: `
+          <p>Dalam Reported Questions, susunan kalimat tanya diubah kembali menjadi <strong>kalimat pernyataan (Subjek + Predikat)</strong> dan tanda tanya (?) dihilangkan:</p>
+          <div class="formula-box">Yes/No Question: S + asked + if / whether + S + V (backshift)<br>WH-Question: S + asked + Question Word (what/where/when/dll) + S + V (backshift)</div>
+          <p><strong>Contoh:</strong><br>• Direct: <em>He asked, "Are you ready?"</em> → Indirect: <em>He asked if I was ready.</em><br>• Direct: <em>She asked, "Where do you live?"</em> → Indirect: <em>She asked where I lived.</em></p>
+        `
+      },
+      {
+        id: 7,
+        title: "7. No Backshift (Pengecualian)",
+        summary: "Kapan bentuk tense tidak mengalami perubahan?",
+        body: `
+          <p>Tense dalam Indirect Speech <strong>tidak perlu dimundurkan (No Backshift)</strong> apabila:</p>
+          <div class="formula-box">1. Reporting verb berbentuk Present/Future (says, tells, will say)<br>2. Kalimat menyatakan kebenaran umum (general truth) atau fakta ilmiah<br>3. Situasi masih berlaku pada saat dilaporkan</div>
+          <p><strong>Contoh:</strong><br>• Direct: <em>The teacher said, "The sun rises in the east."</em><br>• Indirect: <em>The teacher said that the sun rises in the east.</em></p>
+        `
+      }
+    ];
+
+    // Data Contoh Kalimat
+    const examplesData = [
+      {
+        category: "statements",
+        heading: "Contoh Statements (Pernyataan)",
+        rows: [
+          { direct: 'She said, "I am tired."', indirect: "She said that she was tired." },
+          { direct: 'They said, "We will come tomorrow."', indirect: "They said that they would come the next day." },
+          { direct: 'He said, "I have finished my homework."', indirect: "He said that he had finished his homework." }
+        ]
+      },
+      {
+        category: "commands",
+        heading: "Contoh Commands & Requests (Perintah & Permintaan)",
+        rows: [
+          { direct: 'The teacher said, "Close the door, please."', indirect: "The teacher asked me to close the door." },
+          { direct: 'Father said, "Don't touch that wire!"', indirect: "Father warned me not to touch that wire." },
+          { direct: 'She said to him, "Help me carry this box."', indirect: "She asked him to help her carry that box." }
+        ]
+      },
+      {
+        category: "questions",
+        heading: "Contoh Questions (Kalimat Tanya)",
+        rows: [
+          { direct: 'He asked me, "Do you speak English?"', indirect: "He asked me if I spoke English." },
+          { direct: 'Rina asked, "Where are you going?"', indirect: "Rina asked where I was going." },
+          { direct: 'They asked, "Did she attend the meeting?"', indirect: "They asked whether she had attended the meeting." }
+        ]
+      },
+      {
+        category: "nobackshift",
+        heading: "Contoh No Backshift (Pengecualian)",
+        rows: [
+          { direct: 'The teacher said, "Water boils at 100°C."', indirect: "The teacher said that water boils at 100°C." },
+          { direct: 'She says, "I love reading novels."', indirect: "She says that she loves reading novels." },
+          { direct: 'He said, "The Earth orbits the Sun."', indirect: "He said that the Earth orbits the Sun." }
+        ]
+      }
+    ];
+
+    // Data 10 Soal Latihan
+    const quizQuestions = [
+      {
+        prompt: '"I will call you later," he said.',
+        options: [
+          "A. He said that he will call me later.",
+          "B. He said that he would call me later.",
+          "C. He said if he would call me later.",
+          "D. He said that he calls me later."
+        ],
+        answer: 1,
+        explanation: "Kata kerja 'will' berubah menjadi 'would' (backshift), dan kata ganti 'I' menjadi 'he', serta 'you' menjadi 'me'."
+      },
+      {
+        prompt: 'She said, "I am studying English now."',
+        options: [
+          "A. She said that she was studying English then.",
+          "B. She said that she is studying English now.",
+          "C. She said that she studied English then.",
+          "D. She said that I was studying English then."
+        ],
+        answer: 0,
+        explanation: "Present Continuous ('am studying') mundur menjadi Past Continuous ('was studying'), dan 'now' berubah menjadi 'then'."
+      },
+      {
+        prompt: 'They said, "We visited Bali last year."',
+        options: [
+          "A. They said that they visit Bali the year before.",
+          "B. They said that they have visited Bali last year.",
+          "C. They said that they had visited Bali the previous year.",
+          "D. They said that we had visited Bali the previous year."
+        ],
+        answer: 2,
+        explanation: "Simple Past ('visited') berubah menjadi Past Perfect ('had visited') dan 'last year' menjadi 'the previous year'."
+      },
+      {
+        prompt: 'The teacher said to us, "Don't make any noise!"',
+        options: [
+          "A. The teacher told us don't make any noise.",
+          "B. The teacher told us not to make any noise.",
+          "C. The teacher said us to not make any noise.",
+          "D. The teacher asked us didn't make any noise."
+        ],
+        answer: 1,
+        explanation: "Kalimat larangan menggunakan pola: told + object + not to + V1."
+      },
+      {
+        prompt: 'He asked me, "Where do you live?"',
+        options: [
+          "A. He asked me where did I live.",
+          "B. He asked me where do I live.",
+          "C. He asked me where I lived.",
+          "D. He asked me if where I lived."
+        ],
+        answer: 2,
+        explanation: "WH-Question diubah menjadi susunan pernyataan (where + S + V2) tanpa kata bantu 'did'."
+      },
+      {
+        prompt: 'Mother asked, "Have you eaten lunch?"',
+        options: [
+          "A. Mother asked if I had eaten lunch.",
+          "B. Mother asked that I have eaten lunch.",
+          "C. Mother asked if had I eaten lunch.",
+          "D. Mother asked whether I ate lunch."
+        ],
+        answer: 0,
+        explanation: "Yes/No Question menggunakan 'if/whether' diikuti susunan pernyataan (I had eaten)."
+      },
+      {
+        prompt: 'Dina said, "I can swim very fast."',
+        options: [
+          "A. Dina said that she can swim very fast.",
+          "B. Dina said that she could swim very fast.",
+          "C. Dina said that she could swam very fast.",
+          "D. Dina told that she can swim very fast."
+        ],
+        answer: 1,
+        explanation: "Modal 'can' berubah menjadi 'could' diikuti V1 ('swim')."
+      },
+      {
+        prompt: 'The scientist said, "The Earth revolves around the Sun."',
+        options: [
+          "A. The scientist said that the Earth revolved around the Sun.",
+          "B. The scientist said that the Earth had revolved around the Sun.",
+          "C. The scientist said that the Earth revolves around the Sun.",
+          "D. The scientist asked if the Earth revolves around the Sun."
+        ],
+        answer: 2,
+        explanation: "Kebenaran umum/fakta ilmiah (general truth) tidak mengalami backshift (tetap Simple Present)."
+      },
+      {
+        prompt: 'Andi said, "I will submit the assignment tomorrow."',
+        options: [
+          "A. Andi said that he would submit the assignment the next day.",
+          "B. Andi said that he will submit the assignment tomorrow.",
+          "C. Andi said that he would submitted the assignment the next day.",
+          "D. Andi said that I would submit the assignment the next day."
+        ],
+        answer: 0,
+        explanation: "'Will' menjadi 'would' dan 'tomorrow' berubah menjadi 'the next day'."
+      },
+      {
+        prompt: 'She said to her brother, "Please open the window."',
+        options: [
+          "A. She asked her brother open the window.",
+          "B. She asked her brother to open the window.",
+          "C. She said her brother opening the window.",
+          "D. She told to her brother open the window."
+        ],
+        answer: 1,
+        explanation: "Kalimat permintaan sopan (request) diubah menggunakan pola: asked + object + to + V1."
+      }
+    ];
+
+    const transformTasks = [
+      { direct: 'She said, "I am tired."', answer: "She said that she was tired." },
+      { direct: 'They said, "We will come tomorrow."', answer: "They said that they would come the next day." },
+      { direct: 'He said, "Open the door!"', answer: "He told me to open the door." },
+      { direct: 'Rina asked, "Are you happy?"', answer: "Rina asked if I was happy." }
+    ];
+
+    let currentQuestion = 0;
+    let userAnswers = new Array(quizQuestions.length).fill(null);
+    let currentQuizMode = "mcq";
+
+    // Navigasi Halaman
+    function navigateTo(pageId) {
+      document.querySelectorAll(".page-view").forEach(sec => sec.classList.remove("active"));
+      document.getElementById("view-" + pageId).classList.add("active");
+
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.classList.toggle("active", link.dataset.page === pageId);
+      });
+
+      document.getElementById("navLinks").classList.remove("open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById("navLinks").classList.toggle("open");
+    }
+
+    // Modal Detail Materi
+    function openTopicModal(topicId) {
+      const topic = topicsData.find(t => t.id === topicId);
+      if (!topic) return;
+
+      const prevBtn = topicId > 1
+        ? `<button class="btn-secondary" onclick="openTopicModal(${topicId - 1})">← Materi Sebelumnya</button>`
+        : `<span></span>`;
+      const nextBtn = topicId < topicsData.length
+        ? `<button class="btn-next" onclick="openTopicModal(${topicId + 1})">Materi Selanjutnya →</button>`
+        : `<button class="btn-next" onclick="closeModal('topicModal'); navigateTo('latihan');">Mulai Latihan →</button>`;
+
+      document.getElementById("topicModalBody").innerHTML = `
+        <h3>${topic.title}</h3>
+        ${topic.body}
+        <div class="quiz-nav-btns" style="margin-top: 22px;">
+          ${prevBtn}
+          ${nextBtn}
+        </div>
+      `;
+      document.getElementById("topicModal").classList.add("open");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove("open");
+    }
+
+    function closeModalOnBackdrop(event, modalId) {
+      if (event.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+
+    // Render & Filter Contoh Kalimat
+    function filterExamples(category, btnEl) {
+      if (btnEl) {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btnEl.classList.add("active");
+      }
+
+      const filtered = category === "all"
+        ? examplesData
+        : examplesData.filter(item => item.category === category);
+
+      const html = filtered.map(group => `
+        <div class="contoh-group">
+          <h3 class="contoh-group-title">${group.heading}</h3>
+          <table class="speech-table">
+            <thead>
+              <tr>
+                <th style="width: 48%;">Direct Speech</th>
+                <th style="width: 52%;">Indirect Speech</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${group.rows.map(r => `
+                <tr>
+                  <td>${r.direct}</td>
+                  <td>${r.indirect}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `).join("");
+
+      document.getElementById("examplesContainer").innerHTML = html;
+    }
+
+    // Render Latihan Soal
+    function switchQuizMode(mode) {
+      currentQuizMode = mode;
+      document.querySelectorAll(".mode-btn").forEach(btn => btn.classList.remove("active"));
+      document.getElementById("mode-" + mode).classList.add("active");
+      renderQuiz();
+    }
+
+    function selectOption(optIndex) {
+      userAnswers[currentQuestion] = optIndex;
+      renderQuiz();
+    }
+
+    function changeQuestion(step) {
+      const next = currentQuestion + step;
+      if (next >= 0 && next < quizQuestions.length) {
+        currentQuestion = next;
+        renderQuiz();
+      } else if (next === quizQuestions.length) {
+        showQuizSummary();
+      }
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById("quizMainArea");
+      const progressBar = document.getElementById("quizProgressBar");
+      const progressText = document.getElementById("quizProgressText");
+
+      if (currentQuizMode === "mcq") {
+        const q = quizQuestions[currentQuestion];
+        const pct = ((currentQuestion + 1) / quizQuestions.length) * 100;
+        progressBar.style.width = pct + "%";
+        progressText.textContent = `${currentQuestion + 1}/${quizQuestions.length}`;
+
+        container.innerHTML = `
+          <h3 class="quiz-question-title">${currentQuestion + 1}. Pilih jawaban yang paling tepat!</h3>
+          <div class="quiz-prompt">${q.prompt}</div>
+          <div class="options-list">
+            ${q.options.map((opt, idx) => `
+              <label class="option-item ${userAnswers[currentQuestion] === idx ? "selected" : ""}" onclick="selectOption(${idx})">
+                <input type="radio" class="option-radio" name="qOption" ${userAnswers[currentQuestion] === idx ? "checked" : ""} />
+                <span>${opt}</span>
+              </label>
+            `).join("")}
+          </div>
+          <div class="quiz-nav-btns">
+            <button class="btn-secondary" onclick="changeQuestion(-1)" ${currentQuestion === 0 ? "disabled" : ""}>← Sebelumnya</button>
+            <button class="btn-next" onclick="changeQuestion(1)">
+              ${currentQuestion === quizQuestions.length - 1 ? "Selesai & Lihat Skor ✓" : "Selanjutnya →"}
+            </button>
+          </div>
+        `;
+      } else if (currentQuizMode === "transform") {
+        progressBar.style.width = "100%";
+        progressText.textContent = "4 Soal";
+        container.innerHTML = `
+          <h3 class="quiz-question-title">Latihan Ubah Kalimat (Direct → Indirect Speech)</h3>
+          <p style="margin-bottom: 18px; color: var(--text-muted);">Ketik bentuk Indirect Speech yang tepat pada kolom di bawah ini, lalu klik tombol Cek Jawaban.</p>
+          ${transformTasks.map((t, i) => `
+            <div style="margin-bottom: 18px; padding: 16px; border: 1px solid var(--border-light); border-radius: 12px;">
+              <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">${i + 1}. ${t.direct}</div>
+              <input type="text" id="trans-input-${i}" class="search-input" style="margin: 0 0 8px;" placeholder="Tulis kalimat Indirect Speech..." />
+              <div id="trans-feedback-${i}" style="font-size: 0.9rem; font-weight: 600;"></div>
+            </div>
+          `).join("")}
+          <button class="btn-next" onclick="checkTransformations()">Cek Semua Jawaban ✓</button>
+        `;
+      } else if (currentQuizMode === "review") {
+        progressBar.style.width = "100%";
+        progressText.textContent = "10/10";
+        container.innerHTML = `
+          <h3 class="quiz-question-title">Kunci Jawaban &amp; Pembahasan Lengkap</h3>
+          ${quizQuestions.map((q, i) => `
+            <div style="padding: 16px; border: 1px solid var(--border-light); border-radius: 12px; margin-bottom: 14px;">
+              <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">${i + 1}. ${q.prompt}</div>
+              <div style="color: #15803D; font-weight: 700; margin-bottom: 4px;">Jawaban Benar: ${q.options[q.answer]}</div>
+              <div style="font-size: 0.9rem; color: var(--text-body);">Pembahasan: ${q.explanation}</div>
+            </div>
+          `).join("")}
+        `;
+      }
+    }
+
+    function checkTransformations() {
+      transformTasks.forEach((t, i) => {
+        const val = document.getElementById("trans-input-" + i).value.trim().toLowerCase().replace(/[.!?]/g, "");
+        const expected = t.answer.toLowerCase().replace(/[.!?]/g, "");
+        const fb = document.getElementById("trans-feedback-" + i);
+        if (val === expected) {
+          fb.innerHTML = `<span style="color:#15803D;">✓ Tepat! (${t.answer})</span>`;
+        } else {
+          fb.innerHTML = `<span style="color:#B45309;">Jawaban yang disarankan: ${t.answer}</span>`;
+        }
+      });
+    }
+
+    function showQuizSummary() {
+      let score = 0;
+      quizQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) score++;
+      });
+
+      document.getElementById("quizMainArea").innerHTML = `
+        <div style="text-align: center; padding: 20px 10px;">
+          <h2 style="font-size: 1.75rem; color: var(--text-primary); margin-bottom: 10px;">Hasil Latihan Soal</h2>
+          <p style="font-size: 1.05rem; margin-bottom: 18px;">Kamu menjawab benar <strong>${score} dari ${quizQuestions.length}</strong> soal!</p>
+          <div style="font-size: 2.6rem; font-weight: 800; color: #2563EB; margin-bottom: 24px;">Nilai: ${score * 10}</div>
+          <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <button class="btn-secondary" onclick="userAnswers.fill(null); currentQuestion = 0; renderQuiz();">Ulangi Latihan</button>
+            <button class="btn-next" onclick="switchQuizMode('review')">Lihat Pembahasan →</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Fitur Pencarian Cepat
+    function openSearchModal() {
+      document.getElementById("searchModal").classList.add("open");
+      const input = document.getElementById("searchInput");
+      input.value = "";
+      handleSearch("");
+      setTimeout(() => input.focus(), 100);
+    }
+
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      const resultsEl = document.getElementById("searchResults");
+
+      const matchedTopics = topicsData.filter(t =>
+        t.title.toLowerCase().includes(q) || t.summary.toLowerCase().includes(q)
+      );
+
+      if (matchedTopics.length === 0) {
+        resultsEl.innerHTML = `<p style="color: var(--text-muted);">Tidak ada materi yang cocok dengan pencarian "${query}".</p>`;
+        return;
+      }
+
+      resultsEl.innerHTML = matchedTopics.map(t => `
+        <div class="search-result-item" onclick="closeModal('searchModal'); openTopicModal(${t.id});">
+          <div style="font-weight: 700; color: var(--text-primary);">${t.title}</div>
+          <div style="font-size: 0.88rem; color: var(--text-muted);">${t.summary}</div>
+        </div>
+      `).join("");
+    }
+
+    // Inisialisasi Halaman
+    document.addEventListener("DOMContentLoaded", () => {
+      filterExamples("all");
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>
